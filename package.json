@@ -10,13 +10,19 @@
     "strapi": "strapi",
     "deploy": "strapi deploy"
   },
+  "devDependencies": {
+    "@swc/core": "^1.7.21",
+    "prisma": "^5.19.1"
+  },
   "dependencies": {
+    "@prisma/client": "^5.19.1",
     "@strapi/plugin-cloud": "4.25.10",
     "@strapi/plugin-i18n": "4.25.10",
     "@strapi/plugin-users-permissions": "4.25.10",
     "@strapi/strapi": "4.25.10",
     "@swc/core": "^1.7.24",
     "pg": "8.8.0",
+    "csv-parser": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
