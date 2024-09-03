@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql" // Or "mysql", "sqlite", etc.
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id                            Int      @id @default(autoincrement())
+  tipo                          String
+  sku                           String
+  name                          String
+  published                     Boolean
+  featured                      Boolean
+  visible                       String
+  shortDesc                     String?  // Corresponds to "Descrição curta"
+  description                   String?  // Corresponds to "Descrição"
+  promoStartDate                DateTime? // Corresponds to "Data de preço promocional começa em"
+  promoEndDate                  DateTime? // Corresponds to "Data de preço promocional termina em"
+  taxStatus                     String
+  taxClass                      String?
+  inStock                       Boolean
+  stock                         Int
+  lowStockThreshold             Int?
+  backordersAllowed             Boolean
+  soldIndividually              Boolean
+  weight                        Float?
+  length                        Float?
+  width                         Float?
+  height                        Float?
+  allowCustomerReviews          Boolean
+  purchaseNote                  String?
+  promoPrice                    Float?
+  price                         Float
+  categories                    String?
+  tags                          String?
+  deliveryClass                 String?
+  images                        String[]
+  downloadLimit                 Int?
+  downloadExpiryDays            Int?
+  ascending                     Int?
+  productGroup                  String?
+  upsells                       String?
+  crossSells                    String?
+  externalUrl                   String?
+  buttonText                    String?
+  position                      Int?
+  swatchesAttributes            Json?    // Use JSON for complex objects like swatches
+  attributeName1                String?  // Corresponds to "Nome do atributo 1"
+  attributeValues1              String?  // Corresponds to "Valores do atributo 1"
+  attributeVisibility1          Boolean
+  globalAttribute1              Boolean
+  yoastPrimaryProductCat        String?  // Corresponds to "Metadado: _yoast_wpseo_primary_product_cat"
+  yoastContentScore             Int?     // Corresponds to "Metadado: _yoast_wpseo_content_score"
+  allowOpenswatch               Boolean? // Corresponds to "Metadado: _allow_openswatch"
+  openswatchAttributeGallery    Json?    // Corresponds to "Metadado: _openswatch_attribute_gallery"
+  wcpaExcludeGlobalForms        Boolean? // Corresponds to "Metadado: wcpa_exclude_global_forms"
+  calor                         String?  // Corresponds to "Metadado: calor"
+  lace                          String?  // Corresponds to "Metadado: lace"
+  size                          String?  // Corresponds to "Metadado: tamanho"
+  lastEditorUsedJetpack         String?  // Corresponds to "Metadado: _last_editor_used_jetpack"
+  fbProductGroupId              String?  // Corresponds to "Metadado: fb_product_group_id"
+  wcFacebookCommerceEnabled     Boolean? // Corresponds to "Metadado: _wc_facebook_commerce_enabled"
+  yoastReadingTime              Int?     // Corresponds to "Metadado: _yoast_wpseo_estimated-reading-time-minutes"
+  fbProductItemId               String?  // Corresponds to "Metadado: fb_product_item_id"
+  wcFacebookSyncEnabled         Boolean? // Corresponds to "Metadado: _wc_facebook_sync_enabled"
+  fbVisibility                  String?  // Corresponds to "Metadado: fb_visibility"
+  fbProductDescription          String?  // Corresponds to "Metadado: fb_product_description"
+  wcFacebookProductImageSource  String?  // Corresponds to "Metadado: _wc_facebook_product_image_source"
+  fbProductImage                String?  // Corresponds to "Metadado: fb_product_image"
+  fbProductPrice                Float?   // Corresponds to "Metadado: fb_product_price"
+  yoastFocusKeyword             String?  // Corresponds to "Metadado: _yoast_wpseo_focuskw"
+  yoastLinkdex                  Int?     // Corresponds to "Metadado: _yoast_wpseo_linkdex"
+  oembedData                    Json?    // Handles oEmbed metadata (use JSON)
+  inlineFeaturedImage           String?  // Corresponds to "Metadado: inline_featured_image"
+  yoastPrimaryWooFeedBrand      String?  // Corresponds to "Metadado: _yoast_wpseo_primary_woo-feed-brand"
+  yoastPrimaryFbProductSet      String?  // Corresponds to "Metadado: _yoast_wpseo_primary_fb_product_set"
+  wpOldDate                     DateTime? // Corresponds to "Metadado: _wp_old_date"
+  baCheetahMode                 Boolean? // Corresponds to "Metadado: ba_cheetah_mode"
+  wpPageTemplate                String?  // Corresponds to "Metadado: _wp_page_template"
+  wpasDoneAll                   Boolean? // Corresponds to "Metadado: _wpas_done_all"
+  createdAt                     DateTime @default(now())
+  updatedAt                     DateTime @updatedAt
+}
