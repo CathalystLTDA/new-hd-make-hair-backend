@@ -8,6 +8,376 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+model Product {
+  id                           Int       @id @default(autoincrement())
+  tipo                         String
+  sku                          String
+  name                         String
+  published                    Boolean
+  featured                     Boolean
+  visible                      String
+  shortDesc                    String? // Corresponds to "Descrição curta"
+  description                  String? // Corresponds to "Descrição"
+  promoStartDate               DateTime? // Corresponds to "Data de preço promocional começa em"
+  promoEndDate                 DateTime? // Corresponds to "Data de preço promocional termina em"
+  taxStatus                    String
+  taxClass                     String?
+  inStock                      Boolean
+  stock                        Int
+  lowStockThreshold            Int?
+  backordersAllowed            Boolean
+  soldIndividually             Boolean
+  weight                       Float?
+  length                       Float?
+  width                        Float?
+  height                       Float?
+  allowCustomerReviews         Boolean
+  purchaseNote                 String?
+  promoPrice                   Float?
+  price                        Float
+  categories                   String?
+  tags                         String?
+  deliveryClass                String?
+  images                       String[]
+  downloadLimit                Int?
+  downloadExpiryDays           Int?
+  ascending                    Int?
+  productGroup                 String?
+  upsells                      String?
+  crossSells                   String?
+  externalUrl                  String?
+  buttonText                   String?
+  position                     Int?
+  swatchesAttributes           Json? // Use JSON for complex objects like swatches
+  attributeName1               String? // Corresponds to "Nome do atributo 1"
+  attributeValues1             String? // Corresponds to "Valores do atributo 1"
+  attributeVisibility1         Boolean
+  globalAttribute1             Boolean
+  yoastPrimaryProductCat       String? // Corresponds to "Metadado _yoast_wpseo_primary_product_cat"
+  yoastContentScore            Int? // Corresponds to "Metadado _yoast_wpseo_content_score"
+  allowOpenswatch              Boolean? // Corresponds to "Metadado _allow_openswatch"
+  openswatchAttributeGallery   Json? // Corresponds to "Metadado _openswatch_attribute_gallery"
+  wcpaExcludeGlobalForms       Boolean? // Corresponds to "Metadado wcpa_exclude_global_forms"
+  calor                        String? // Corresponds to "Metadado calor"
+  lace                         String? // Corresponds to "Metadado lace"
+  size                         String? // Corresponds to "Metadado tamanho"
+  lastEditorUsedJetpack        String? // Corresponds to "Metadado _last_editor_used_jetpack"
+  fbProductGroupId             String? // Corresponds to "Metadado fb_product_group_id"
+  wcFacebookCommerceEnabled    Boolean? // Corresponds to "Metadado _wc_facebook_commerce_enabled"
+  yoastReadingTime             Int? // Corresponds to "Metadado _yoast_wpseo_estimated-reading-time-minutes"
+  fbProductItemId              String? // Corresponds to "Metadado fb_product_item_id"
+  wcFacebookSyncEnabled        Boolean? // Corresponds to "Metadado _wc_facebook_sync_enabled"
+  fbVisibility                 String? // Corresponds to "Metadado fb_visibility"
+  fbProductDescription         String? // Corresponds to "Metadado fb_product_description"
+  wcFacebookProductImageSource String? // Corresponds to "Metadado _wc_facebook_product_image_source"
+  fbProductImage               String? // Corresponds to "Metadado fb_product_image"
+  fbProductPrice               Float? // Corresponds to "Metadado fb_product_price"
+  yoastFocusKeyword            String? // Corresponds to "Metadado _yoast_wpseo_focuskw"
+  yoastLinkdex                 Int? // Corresponds to "Metadado _yoast_wpseo_linkdex"
+  oembedData                   Json? // Handles oEmbed metadata (use JSON)
+  inlineFeaturedImage          String? // Corresponds to "Metadado inline_featured_image"
+  yoastPrimaryWooFeedBrand     String? // Corresponds to "Metadado _yoast_wpseo_primary_woo-feed-brand"
+  yoastPrimaryFbProductSet     String? // Corresponds to "Metadado _yoast_wpseo_primary_fb_product_set"
+  wpOldDate                    DateTime? // Corresponds to "Metadado _wp_old_date"
+  baCheetahMode                Boolean? // Corresponds to "Metadado ba_cheetah_mode"
+  wpPageTemplate               String? // Corresponds to "Metadado _wp_page_template"
+  wpasDoneAll                  Boolean? // Corresponds to "Metadado _wpas_done_all"
+  createdAt                    DateTime  @default(now())
+  updatedAt                    DateTime  @updatedAt
+}
+
+model CSVRecord {
+  id                                                      Int    @id @default(autoincrement())
+  ID                                                      String
+  Tipo                                                    String
+  SKU                                                     String
+  Nome                                                    String
+  Publicado                                               String
+  Em_destaque_                                            String
+  Visibilidade_no_cat_logo                                String
+  Descri__o_curta                                         String
+  Descri__o                                               String
+  Data_de_pre_o_promocional_come_a_em                     String
+  Data_de_pre_o_promocional_termina_em                    String
+  Status_do_imposto                                       String
+  Classe_de_imposto                                       String
+  Em_estoque_                                             String
+  Estoque                                                 String
+  Quantidade_baixa_de_estoque                             String
+  S_o_permitidas_encomendas_                              String
+  Vendido_individualmente_                                String
+  Peso__kg_                                               String
+  Comprimento__cm_                                        String
+  Largura__cm_                                            String
+  Altura__cm_                                             String
+  Permitir_avalia__es_de_clientes_                        String
+  Nota_de_compra                                          String
+  Pre_o_promocional                                       String
+  Pre_o                                                   String
+  Categorias                                              String
+  Tags                                                    String
+  Classe_de_entrega                                       String
+  Imagens                                                 String
+  Limite_de_downloads                                     String
+  Dias_para_expirar_o_download                            String
+  Ascendente                                              String
+  Grupo_de_produtos                                       String
+  Upsells                                                 String
+  Venda_cruzada                                           String
+  URL_externa                                             String
+  Texto_do_bot_o                                          String
+  Posi__o                                                 String
+  Swatches_Attributes                                     String
+  Nome_do_atributo_1                                      String
+  Valores_do_atributo_1                                   String
+  Visibilidade_do_atributo_1                              String
+  Atributo_global_1                                       String
+  Metadado___yoast_wpseo_primary_product_cat              String
+  Metadado___yoast_wpseo_content_score                    String
+  Metadado___allow_openswatch                             String
+  Metadado___openswatch_attribute_gallery                 String
+  Metadado__wcpa_exclude_global_forms                     String
+  Metadado__calor                                         String
+  Metadado___calor                                        String
+  Metadado__lace                                          String
+  Metadado___lace                                         String
+  Metadado__tamanho                                       String
+  Metadado___tamanho                                      String
+  Metadado___last_editor_used_jetpack                     String
+  Metadado__fb_product_group_id                           String
+  Metadado___wc_facebook_commerce_enabled                 String
+  Metadado___yoast_wpseo_estimated_reading_time_minutes   String
+  Metadado__fb_product_item_id                            String
+  Metadado___wc_facebook_sync_enabled                     String
+  Metadado__fb_visibility                                 String
+  Metadado__fb_product_description                        String
+  Metadado___wc_facebook_product_image_source             String
+  Metadado__fb_product_image                              String
+  Metadado__fb_product_price                              String
+  Metadado___yoast_wpseo_focuskw                          String
+  Metadado___yoast_wpseo_linkdex                          String
+  Metadado___oembed_fd8dd7b7821f5d8b881025ef800445b0      String
+  Metadado___oembed_time_fd8dd7b7821f5d8b881025ef800445b0 String
+  Metadado___oembed_044bf935f2b598a10ddb4a3249169c8f      String
+  Metadado___oembed_time_044bf935f2b598a10ddb4a3249169c8f String
+  Metadado___yoast_wpseo_wordproof_timestamp              String
+  Metadado___oembed_9c4c5d98b0ae0bb72410dd1a620d8494      String
+  Metadado___oembed_time_9c4c5d98b0ae0bb72410dd1a620d8494 String
+  Metadado__inline_featured_image                         String
+  Metadado___yoast_wpseo_primary_woo_feed_brand           String
+  Metadado___yoast_wpseo_primary_fb_product_set           String
+  Metadado___oembed_167911362688e5debe5cf30f0f87aaa9      String
+  Metadado___oembed_time_167911362688e5debe5cf30f0f87aaa9 String
+  Metadado___oembed_3c10d5f5cb534f46ac7de644831822a5      String
+  Metadado___oembed_time_3c10d5f5cb534f46ac7de644831822a5 String
+  Metadado___oembed_4ffdfbea8364ec2bc3f373e95a3f8911      String
+  Metadado___oembed_time_4ffdfbea8364ec2bc3f373e95a3f8911 String
+  Metadado___oembed_125c4932bce505f2bff40e7ef4f9a434      String
+  Metadado___oembed_time_125c4932bce505f2bff40e7ef4f9a434 String
+  Metadado___oembed_060a0d2232ae05708d98e742322d92a3      String
+  Metadado___oembed_time_060a0d2232ae05708d98e742322d92a3 String
+  Metadado___oembed_3cf78b10fbf6aa835c8433bb9697995c      String
+  Metadado___oembed_time_3cf78b10fbf6aa835c8433bb9697995c String
+  Metadado___oembed_5d530cdd4049a26ecddb30d55c4ef0ef      String
+  Metadado___oembed_time_5d530cdd4049a26ecddb30d55c4ef0ef String
+  Metadado___oembed_52883cfce907852eac7b110216b0c7d6      String
+  Metadado___oembed_time_52883cfce907852eac7b110216b0c7d6 String
+  Metadado___oembed_cbcb97533fdfd4baeb9ee5bf48a8f915      String
+  Metadado___oembed_time_cbcb97533fdfd4baeb9ee5bf48a8f915 String
+  Metadado___oembed_9ce47f6ab7ea9712edd6e8e9800c98b0      String
+  Metadado___oembed_time_9ce47f6ab7ea9712edd6e8e9800c98b0 String
+  Metadado___oembed_d6f6782f93e1c4cd3ea74c84461b4bb9      String
+  Metadado___oembed_time_d6f6782f93e1c4cd3ea74c84461b4bb9 String
+  Metadado___oembed_2b166765fc66ac42f2dc6ddde6b5b17a      String
+  Metadado___oembed_time_2b166765fc66ac42f2dc6ddde6b5b17a String
+  Metadado___oembed_68d1b7eba5babf4210e986156fdb6d2b      String
+  Metadado___oembed_time_68d1b7eba5babf4210e986156fdb6d2b String
+  Metadado___oembed_e7c75503798ba00b4130c9342ea9723a      String
+  Metadado___oembed_time_e7c75503798ba00b4130c9342ea9723a String
+  Metadado___oembed_a9d9e5b143214d2f4c656a8f8ab41b61      String
+  Metadado___oembed_time_a9d9e5b143214d2f4c656a8f8ab41b61 String
+  Metadado___oembed_9e983472016877eaa4aaf6318c21fda3      String
+  Metadado___oembed_time_9e983472016877eaa4aaf6318c21fda3 String
+  Metadado___oembed_30ecb7e807a63c6792475fe37f6ce2ca      String
+  Metadado___oembed_79f7f462af197df6b507e232d816bf06      String
+  Metadado___oembed_time_79f7f462af197df6b507e232d816bf06 String
+  Metadado___oembed_5df3fa1f431c8644c702734ab9e402b5      String
+  Metadado___oembed_time_5df3fa1f431c8644c702734ab9e402b5 String
+  Metadado___oembed_aa979fdce2697fe65acf81e17c67ab37      String
+  Metadado___oembed_time_aa979fdce2697fe65acf81e17c67ab37 String
+  Metadado___oembed_a354dac720f152acd221ea99b5f1f7d8      String
+  Metadado___oembed_time_a354dac720f152acd221ea99b5f1f7d8 String
+  Metadado___oembed_58abcf19bc8fce85f22bf9543c368a56      String
+  Metadado___oembed_time_58abcf19bc8fce85f22bf9543c368a56 String
+  Metadado___oembed_313ea2dc69506e130bb011d7d07d084d      String
+  Metadado___oembed_time_313ea2dc69506e130bb011d7d07d084d String
+  Metadado___oembed_bc5f38b7c6bdd40d3ea8c6f133fc6720      String
+  Metadado___oembed_time_bc5f38b7c6bdd40d3ea8c6f133fc6720 String
+  Metadado___oembed_005bb221e4388cddfe25bddc0ec49716      String
+  Metadado___oembed_time_005bb221e4388cddfe25bddc0ec49716 String
+  Metadado___oembed_b1d7da55282f088c3e8ef5048cf28f04      String
+  Metadado___oembed_time_b1d7da55282f088c3e8ef5048cf28f04 String
+  Metadado___oembed_59e2d604772cce0f90ec276a1a643dbc      String
+  Metadado___oembed_time_59e2d604772cce0f90ec276a1a643dbc String
+  Metadado___oembed_5cebcbf2cf0b3fa00e34f22be49b0cca      String
+  Metadado___oembed_time_5cebcbf2cf0b3fa00e34f22be49b0cca String
+  Metadado___oembed_ee7c61f9f884dc078243625fe0e8d499      String
+  Metadado___oembed_time_ee7c61f9f884dc078243625fe0e8d499 String
+  Metadado___oembed_3acdb84608351205387bfbee83e6eb70      String
+  Metadado___oembed_time_3acdb84608351205387bfbee83e6eb70 String
+  Metadado___oembed_91ee51ac9cbfcf2e829285146150e4f9      String
+  Metadado___oembed_time_91ee51ac9cbfcf2e829285146150e4f9 String
+  Metadado___oembed_9fce3dad9b1c7b8b9c6d463784b8782a      String
+  Metadado___oembed_time_9fce3dad9b1c7b8b9c6d463784b8782a String
+  Metadado___oembed_834812c99c24df9197c6c4172099b531      String
+  Metadado___oembed_time_834812c99c24df9197c6c4172099b531 String
+  Metadado___oembed_5c98ad05a974f9ee37a5fcacdaeb313a      String
+  Metadado___oembed_time_5c98ad05a974f9ee37a5fcacdaeb313a String
+  Metadado___oembed_0919fa085f88f4bb3610f5ba71d20b98      String
+  Metadado___oembed_time_0919fa085f88f4bb3610f5ba71d20b98 String
+  Metadado___oembed_4267dacfddce699b8a3804d4a1831fd0      String
+  Metadado___oembed_time_4267dacfddce699b8a3804d4a1831fd0 String
+  Metadado___oembed_44b7abdf7e487fcf4fbc52861b710cc8      String
+  Metadado___oembed_time_44b7abdf7e487fcf4fbc52861b710cc8 String
+  Metadado___oembed_1f6734448e5d4babb1eff1ad26eec389      String
+  Metadado___oembed_time_1f6734448e5d4babb1eff1ad26eec389 String
+  Metadado___oembed_519ccf5bf00560862cfabc3f72737d3c      String
+  Metadado___oembed_time_519ccf5bf00560862cfabc3f72737d3c String
+  Metadado___oembed_2847ee062bb8b1904d58a9384f788130      String
+  Metadado___oembed_time_2847ee062bb8b1904d58a9384f788130 String
+  Metadado___oembed_91914a0077e5e013ad1ceba92bfde9b3      String
+  Metadado___oembed_time_91914a0077e5e013ad1ceba92bfde9b3 String
+  Metadado___oembed_44fb780a3a7b427bae1ee20ef84ab978      String
+  Metadado___oembed_time_44fb780a3a7b427bae1ee20ef84ab978 String
+  Metadado___oembed_403c84c2b72a389951a8dec56855e7c1      String
+  Metadado___oembed_time_403c84c2b72a389951a8dec56855e7c1 String
+  Metadado___oembed_a3cae83fa4a8be6203d4ef170caf282f      String
+  Metadado___oembed_time_a3cae83fa4a8be6203d4ef170caf282f String
+  Metadado___oembed_b6888b1aa1f9ee6df885ca41ac1b8fa1      String
+  Metadado___oembed_time_b6888b1aa1f9ee6df885ca41ac1b8fa1 String
+  Metadado___oembed_7ae0986bf45a38dfa982ba97791eafa3      String
+  Metadado___oembed_time_7ae0986bf45a38dfa982ba97791eafa3 String
+  Metadado___oembed_c77e5af932a06c963004003f1a71afe9      String
+  Metadado___oembed_time_c77e5af932a06c963004003f1a71afe9 String
+  Metadado___oembed_9db070ebca23cc53a07f5e7aee4062f5      String
+  Metadado___oembed_time_9db070ebca23cc53a07f5e7aee4062f5 String
+  Metadado___oembed_f554e21dc6e322de300f71bfc5834715      String
+  Metadado___oembed_time_f554e21dc6e322de300f71bfc5834715 String
+  Metadado___oembed_73eb1bec984a4548d5682420c0ba40ad      String
+  Metadado___oembed_time_73eb1bec984a4548d5682420c0ba40ad String
+  Metadado___oembed_0f9535336bcc528d109b9cb5cfdcf9cb      String
+  Metadado___oembed_time_0f9535336bcc528d109b9cb5cfdcf9cb String
+  Metadado___oembed_e504fc0c491498f5a9ff2d5de78183b5      String
+  Metadado___oembed_time_e504fc0c491498f5a9ff2d5de78183b5 String
+  Metadado___oembed_dc7821e42922bb880828c76b297e53cc      String
+  Metadado___oembed_time_dc7821e42922bb880828c76b297e53cc String
+  Metadado___oembed_d044d9781b3e70ce9c79b86f798ee997      String
+  Metadado___oembed_time_d044d9781b3e70ce9c79b86f798ee997 String
+  Metadado___oembed_2fa41904ba40bb4d399ed3d6c879aa1d      String
+  Metadado___oembed_time_2fa41904ba40bb4d399ed3d6c879aa1d String
+  Metadado___oembed_1aedfa0952264df88bc3eccbe31a1738      String
+  Metadado___oembed_time_1aedfa0952264df88bc3eccbe31a1738 String
+  Metadado___oembed_e4d22374c9d098d99ac67f626e5519ce      String
+  Metadado___oembed_time_e4d22374c9d098d99ac67f626e5519ce String
+  Metadado___oembed_7e0018ba03761057ad93201b5c4f15bd      String
+  Metadado___oembed_time_7e0018ba03761057ad93201b5c4f15bd String
+  Metadado___oembed_63fb8b7a26a3d8c5a784ebac73570ef8      String
+  Metadado___oembed_time_63fb8b7a26a3d8c5a784ebac73570ef8 String
+  Metadado___oembed_a7ad144812fd15324868eb0b505bb742      String
+  Metadado___oembed_time_a7ad144812fd15324868eb0b505bb742 String
+  Metadado___oembed_fe856b82c5a0f1842969b93031be4f89      String
+  Metadado___oembed_time_fe856b82c5a0f1842969b93031be4f89 String
+  Metadado___oembed_d46642a27e91d79224f26658959aa947      String
+  Metadado___oembed_time_d46642a27e91d79224f26658959aa947 String
+  Metadado___oembed_7c0225a37eef4a718bbca27a4d12bd97      String
+  Metadado___oembed_time_7c0225a37eef4a718bbca27a4d12bd97 String
+  Metadado___oembed_4f8af851159a794087b75d940ae5ee7a      String
+  Metadado___oembed_time_4f8af851159a794087b75d940ae5ee7a String
+  Metadado___oembed_00031bef1a066964c4a2313df961f1e4      String
+  Metadado___oembed_time_00031bef1a066964c4a2313df961f1e4 String
+  Metadado___oembed_5ef0edc7d9b0cc02630c8ce5f91dcaaa      String
+  Metadado___oembed_time_5ef0edc7d9b0cc02630c8ce5f91dcaaa String
+  Metadado___oembed_ddd46616d70d56bfc7deb48bd01eb6d2      String
+  Metadado___oembed_time_ddd46616d70d56bfc7deb48bd01eb6d2 String
+  Metadado___oembed_84217d7cd23091fc47444b3180fab6a9      String
+  Metadado___oembed_time_84217d7cd23091fc47444b3180fab6a9 String
+  Metadado___oembed_7baa3ee3513e1a6248c8c55b8ba821b0      String
+  Metadado___oembed_time_7baa3ee3513e1a6248c8c55b8ba821b0 String
+  Metadado___oembed_516076a7a5f784a2a70df6d6056abd2f      String
+  Metadado___oembed_time_516076a7a5f784a2a70df6d6056abd2f String
+  Metadado___oembed_1283bc4f6ad6836827f84ba392e0988e      String
+  Metadado___oembed_time_1283bc4f6ad6836827f84ba392e0988e String
+  Metadado___oembed_204fad344e37a1d341c1107c6e3a44ff      String
+  Metadado___oembed_time_204fad344e37a1d341c1107c6e3a44ff String
+  Metadado___oembed_90dca95b8afcec3f0594d7863f0641bd      String
+  Metadado___oembed_time_90dca95b8afcec3f0594d7863f0641bd String
+  Metadado___oembed_d308e732f4f995ab14525ec4b93c9550      String
+  Metadado___oembed_time_d308e732f4f995ab14525ec4b93c9550 String
+  Metadado__woo_feed_gender_var                           String
+  Metadado__woo_feed_material_var                         String
+  Metadado__woo_feed_cost_of_good_sold_var                String
+  Metadado___wp_old_date                                  String
+  Metadado___oembed_7ab7fe332c1b19e9de1e966e3aa2c9fb      String
+  Metadado___oembed_time_7ab7fe332c1b19e9de1e966e3aa2c9fb String
+  Metadado___oembed_a0ff050c6a818d3ac9689b954bcacafc      String
+  Metadado___oembed_time_a0ff050c6a818d3ac9689b954bcacafc String
+  Metadado___oembed_d1e7b7eba4717110e7a0b1ee0aa1bf82      String
+  Metadado___oembed_time_d1e7b7eba4717110e7a0b1ee0aa1bf82 String
+  Metadado___oembed_179074b8c9d24bb81c0264231c699c97      String
+  Metadado___oembed_time_179074b8c9d24bb81c0264231c699c97 String
+  Metadado___oembed_a96baf611511baf7d31ec085b8ea3985      String
+  Metadado___oembed_time_a96baf611511baf7d31ec085b8ea3985 String
+  Metadado___oembed_d32129f3215686ed4026784af47d6f76      String
+  Metadado___oembed_time_d32129f3215686ed4026784af47d6f76 String
+  Metadado___oembed_c2f9a9928411f837019b8f4d445c94a5      String
+  Metadado___oembed_time_c2f9a9928411f837019b8f4d445c94a5 String
+  Metadado___oembed_5202e9d5c48a45665bbd8c51a4bbc5a6      String
+  Metadado___oembed_time_5202e9d5c48a45665bbd8c51a4bbc5a6 String
+  Metadado___oembed_b2c3d19020b53d7acef78936a0c2b804      String
+  Metadado___oembed_time_b2c3d19020b53d7acef78936a0c2b804 String
+  Metadado___oembed_2fcc24488c673c721b18425cbec2812d      String
+  Metadado___oembed_eed9d190717757af67a2dd16cbc4316b      String
+  Metadado___oembed_time_eed9d190717757af67a2dd16cbc4316b String
+  Metadado___oembed_c084f7af899b1afff102e9813763df92      String
+  Metadado___oembed_time_c084f7af899b1afff102e9813763df92 String
+  Metadado___oembed_852c4c1876a1caa8c4fa91fc9730e152      String
+  Metadado___oembed_time_852c4c1876a1caa8c4fa91fc9730e152 String
+  Metadado___oembed_8ec609817ca1ec26ef3721281c1bc9de      String
+  Metadado___oembed_time_8ec609817ca1ec26ef3721281c1bc9de String
+  Metadado___oembed_397285ae7a082e0cff7f9ca0b5fec7a1      String
+  Metadado___oembed_time_397285ae7a082e0cff7f9ca0b5fec7a1 String
+  Metadado___oembed_9c20c61ffe56bfe81e236314c7e0e14f      String
+  Metadado___oembed_time_9c20c61ffe56bfe81e236314c7e0e14f String
+  Metadado___oembed_c0a4d283d8e53a6650bf766a428db144      String
+  Metadado___oembed_time_c0a4d283d8e53a6650bf766a428db144 String
+  Metadado___oembed_5008263157f9ebae3589fbf2a6f4fb37      String
+  Metadado___oembed_time_5008263157f9ebae3589fbf2a6f4fb37 String
+  Metadado___oembed_d14415034aca5da38e49c07997e41438      String
+  Metadado___oembed_time_d14415034aca5da38e49c07997e41438 String
+  Metadado___oembed_201ede38cfbe3226c442062e3cf3dd2a      String
+  Metadado___oembed_time_201ede38cfbe3226c442062e3cf3dd2a String
+  Metadado___oembed_ed37348a02c286d45c83d4fb2010c679      String
+  Metadado___oembed_time_ed37348a02c286d45c83d4fb2010c679 String
+  Metadado___oembed_4145181a2bb4c09fae88babfc0afc966      String
+  Metadado___oembed_time_4145181a2bb4c09fae88babfc0afc966 String
+  Metadado___oembed_e76e3ab026a8ff71fa3649d53fee160c      String
+  Metadado___oembed_time_e76e3ab026a8ff71fa3649d53fee160c String
+  Metadado___oembed_2a62b09685ab49d428cc493ab695cdc8      String
+  Metadado___oembed_time_2a62b09685ab49d428cc493ab695cdc8 String
+  Metadado___oembed_4dd44b40914cca481ac6f172fda8cbf7      String
+  Metadado___oembed_time_4dd44b40914cca481ac6f172fda8cbf7 String
+  Metadado___yoast_wpseo_is_cornerstone                   String
+  Metadado___oembed_25046e340e85ab99d845a66002b33b98      String
+  Metadado___oembed_time_25046e340e85ab99d845a66002b33b98 String
+  Metadado___oembed_105d8624915192fdf2451dd04e60e39c      String
+  Metadado___oembed_time_105d8624915192fdf2451dd04e60e39c String
+  Metadado___oembed_9899f1ddf78ed8db21900b8c83502730      String
+  Metadado___oembed_time_9899f1ddf78ed8db21900b8c83502730 String
+  Metadado___oembed_08be66a22eaadc09458d11a3f79edbb3      String
+  Metadado___oembed_time_08be66a22eaadc09458d11a3f79edbb3 String
+  Metadado__ba_cheetah_mode                               String
+  Metadado___wp_page_template                             String
+  Metadado___wpas_done_all                                String
 model User {
   id            String          @id @default(cuid())
   name          String?
