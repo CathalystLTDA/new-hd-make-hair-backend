@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  wooComerceId  String?
+  accounts      Account[]
+  Authenticator Authenticator[]
+  sessions      Session[]
+  Wishlist      Wishlist[]
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+model Authenticator {
+  id                   String  @id @default(cuid())
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+  user                 User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Currency {
+  id      Int    @id @default(autoincrement())
+  code    String @unique
+  against String
+  rate    Float
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model melhorenviotoken {
+  id            String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code          String   @db.VarChar
+  expires_in    Int
+  access_token  String   @db.VarChar
+  refresh_token String   @db.VarChar
+  created_at    DateTime @default(now()) @db.Timestamp(6)
+}
+
+model CSVRecord {
+  id                                   Int        @id @default(autoincrement())
+  ID                                   String
+  Tipo                                 String
+  SKU                                  String
+  Nome                                 String
+  Publicado                            String
+  Status_do_imposto                    String
+  Classe_de_imposto                    String
+  Estoque                              String
+  Quantidade_baixa_de_estoque          String
+  Nota_de_compra                       String
+  Categorias                           String
+  Tags                                 String
+  Classe_de_entrega                    String
+  Imagens                              String
+  Limite_de_downloads                  String
+  Dias_para_expirar_o_download         String
+  Ascendente                           String
+  Grupo_de_produtos                    String
+  Upsells                              String
+  Venda_cruzada                        String
+  URL_externa                          String
+  Swatches_Attributes                  String
+  Nome_do_atributo_1                   String
+  Valores_do_atributo_1                String
+  Visibilidade_do_atributo_1           String
+  Atributo_global_1                    String
+  Altura_cm                            String
+  Comprimento_cm                       String
+  Data_de_preco_promocional_comeca_em  String
+  Data_de_preco_promocional_termina_em String
+  Descricao                            String
+  Descricao_curta                      String
+  Em_destaque                          String
+  Em_estoque                           String
+  Largura_cm                           String
+  Permitir_avaliacoes_de_clientes      String
+  Peso_kg                              String
+  Posicao                              String
+  Preco                                String
+  Preco_promocional                    String
+  Sao_permitidas_encomendas            String
+  Texto_do_botao                       String
+  Vendido_individualmente              String
+  Visibilidade_no_catalogo             String
+  Wishlist                             Wishlist[]
+}
+
+model Wishlist {
+  id        Int       @id @default(autoincrement())
+  userId    String
+  productId Int
+  added_at  DateTime  @default(now()) @db.Timestamp(6)
+  CSVRecord CSVRecord @relation(fields: [productId], references: [id], onDelete: Cascade)
+  User      User      @relation(fields: [userId], references: [id])
+}

@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "produtos",
+  "info": {
+    "singularName": "produto",
+    "pluralName": "produtos",
+    "displayName": "Produto",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Nome": {
+      "type": "string"
+    },
+    "Descricao": {
+      "type": "text"
+    },
+    "Calor": {
+      "type": "boolean"
+    },
+    "URL": {
+      "type": "string"
+    },
+    "Lacy": {
+      "type": "boolean"
+    },
+    "Manutencao": {
+      "type": "text"
+    },
+    "Comprimento": {
+      "type": "integer"
+    },
+    "TipoDeConstrucao": {
+      "displayName": "Construcao",
+      "type": "component",
+      "repeatable": false,
+      "component": "material.construcao"
+    }
+  }
+}
