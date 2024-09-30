@@ -20,6 +20,7 @@
     "@strapi/plugin-i18n": "4.25.10",
     "@strapi/plugin-users-permissions": "4.25.10",
     "@strapi/strapi": "4.25.10",
+    "@strapi/utils": "^5.0.1",
     "@swc/core": "^1.7.24",
     "csv-parse": "^5.5.6",
     "csv-parser": "^3.0.0",
