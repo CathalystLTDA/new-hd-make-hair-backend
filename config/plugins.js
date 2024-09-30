@@ -7,7 +7,6 @@ module.exports = ({ env }) => ({
       appFilter: "new-hd-make-hair-backend",
       teamFilter: "team_B3QJC70vrWDQC0p6ptCtNr5y",
       roles: ["strapi-super-admin", "strapi-editor", "strapi-author"],
-
     }
   },
 });
