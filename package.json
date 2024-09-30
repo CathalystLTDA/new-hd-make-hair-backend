@@ -33,13 +33,13 @@
     "styled-components": "5.3.3"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Cathalyst"
   },
   "strapi": {
     "uuid": "c605dc21-8f0f-4917-86b6-1e46b31ddce6"
   },
   "engines": {
-    "node": "16.15.0",
+    "node": "18.x",
     "npm": "8.5.5"
   },
   "license": "MIT"
