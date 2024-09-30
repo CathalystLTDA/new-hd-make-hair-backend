@@ -3,15 +3,22 @@
    connection: {
      client: 'postgres',
      connection: {
-       host: env('DATABASE_HOST'),
-       port: env.int('DATABASE_PORT'),
-       database: env('DATABASE_NAME'),
-       user: env('DATABASE_USERNAME'),
-       password: env('DATABASE_PASSWORD'),
+       host: "ep-wild-poetry-a404wid3.us-east-1.aws.neon.tech",
+       port: 5432,
+       database: "verceldb",
+       user: "default",
+       password: "PtgBL5qHn9NS",
        ssl: {
          rejectUnauthorized:env.bool('DATABASE_SSL_SELF', false),
        },
      },
-     debug: false,
+     debug: true,
    },
  });
+
+
+//  DATABASE_HOST=ep-wild-poetry-a404wid3.us-east-1.aws.neon.tech
+// DATABASE_PORT=5432
+// DATABASE_NAME=verceldb
+// DATABASE_USERNAME=default
+// DATABASE_PASSWORD=PtgBL5qHn9NS
