@@ -909,12 +909,6 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    URL: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     Lacy: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -950,6 +944,12 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
       'api::marca.marca'
     >;
     Preco: Attribute.Decimal &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Imagens: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

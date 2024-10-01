@@ -40,14 +40,6 @@
         }
       }
     },
-    "URL": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "Lacy": {
       "type": "boolean",
       "pluginOptions": {
@@ -102,6 +94,21 @@
         }
       },
       "type": "decimal"
+    },
+    "Imagens": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }
