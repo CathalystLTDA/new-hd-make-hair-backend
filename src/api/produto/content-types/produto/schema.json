@@ -109,6 +109,12 @@
           "localized": true
         }
       }
+    },
+    "estilo_pentedeado": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::estilo-pentedeado.estilo-pentedeado",
+      "inversedBy": "produtos"
     }
   }
 }

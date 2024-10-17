@@ -839,6 +839,45 @@ export interface ApiCategoriaCategoria extends Schema.CollectionType {
   };
 }
 
+export interface ApiEstiloPentedeadoEstiloPentedeado
+  extends Schema.CollectionType {
+  collectionName: 'estilo_pentedeados';
+  info: {
+    singularName: 'estilo-pentedeado';
+    pluralName: 'estilo-pentedeados';
+    displayName: 'Estilo/Pentedeado';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Nome: Attribute.Enumeration<
+      ['Aplique', 'Topo de cabe\u00E7a', 'Wig', 'Wig Masculina', 'Wig Infantil']
+    >;
+    produtos: Attribute.Relation<
+      'api::estilo-pentedeado.estilo-pentedeado',
+      'oneToMany',
+      'api::produto.produto'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::estilo-pentedeado.estilo-pentedeado',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::estilo-pentedeado.estilo-pentedeado',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMarcaMarca extends Schema.CollectionType {
   collectionName: 'marcas';
   info: {
@@ -955,6 +994,11 @@ export interface ApiProdutoProduto extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    estilo_pentedeado: Attribute.Relation<
+      'api::produto.produto',
+      'manyToOne',
+      'api::estilo-pentedeado.estilo-pentedeado'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -998,6 +1042,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::categoria.categoria': ApiCategoriaCategoria;
+      'api::estilo-pentedeado.estilo-pentedeado': ApiEstiloPentedeadoEstiloPentedeado;
       'api::marca.marca': ApiMarcaMarca;
       'api::produto.produto': ApiProdutoProduto;
     }
