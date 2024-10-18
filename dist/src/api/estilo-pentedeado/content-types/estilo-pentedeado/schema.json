@@ -1,0 +1,32 @@
+{
+    "kind": "collectionType",
+    "collectionName": "estilo_pentedeados",
+    "info": {
+        "singularName": "estilo-pentedeado",
+        "pluralName": "estilo-pentedeados",
+        "displayName": "Estilo/Pentedeado",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "Nome": {
+            "type": "enumeration",
+            "enum": [
+                "Aplique",
+                "Topo de cabeça",
+                "Wig",
+                "Wig Masculina",
+                "Wig Infantil"
+            ]
+        },
+        "produtos": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::produto.produto",
+            "mappedBy": "estilo_pentedeado"
+        }
+    }
+}

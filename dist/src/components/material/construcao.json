@@ -1,0 +1,23 @@
+{
+    "collectionName": "components_material_construcaos",
+    "info": {
+        "displayName": "Construcao",
+        "icon": "user"
+    },
+    "options": {},
+    "attributes": {
+        "Imagem": {
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ],
+            "type": "media",
+            "multiple": false
+        },
+        "Tipo": {
+            "type": "string"
+        }
+    }
+}

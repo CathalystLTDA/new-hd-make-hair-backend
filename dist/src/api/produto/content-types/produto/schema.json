@@ -1,0 +1,120 @@
+{
+    "kind": "collectionType",
+    "collectionName": "produtos",
+    "info": {
+        "singularName": "produto",
+        "pluralName": "produtos",
+        "displayName": "Produto",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {
+        "i18n": {
+            "localized": true
+        }
+    },
+    "attributes": {
+        "Nome": {
+            "type": "string",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "Descricao": {
+            "type": "text",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "Calor": {
+            "type": "boolean",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "Lacy": {
+            "type": "boolean",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "Manutencao": {
+            "type": "text",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "Comprimento": {
+            "type": "integer",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "TipoDeConstrucao": {
+            "displayName": "Construcao",
+            "type": "component",
+            "repeatable": false,
+            "component": "material.construcao",
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "categorias": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::categoria.categoria",
+            "inversedBy": "produtos"
+        },
+        "marca": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::marca.marca",
+            "inversedBy": "produtos"
+        },
+        "Preco": {
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            },
+            "type": "decimal"
+        },
+        "Imagens": {
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ],
+            "type": "media",
+            "multiple": true,
+            "pluginOptions": {
+                "i18n": {
+                    "localized": true
+                }
+            }
+        },
+        "estilo_pentedeado": {
+            "type": "relation",
+            "relation": "manyToOne",
+            "target": "api::estilo-pentedeado.estilo-pentedeado",
+            "inversedBy": "produtos"
+        }
+    }
+}
