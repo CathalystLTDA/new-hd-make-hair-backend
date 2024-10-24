@@ -12,8 +12,7 @@
   },
   "devDependencies": {
     "@strapi/provider-upload-aws-s3": "^5.1.1",
-    "@swc/core": "^1.7.21",
-    "prisma": "^5.20.0"
+    "@swc/core": "^1.7.21"
   },
   "dependencies": {
     "@prisma/client": "^5.19.1",
@@ -30,7 +29,6 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-vercel-deploy": "^1.4.0",
     "styled-components": "5.3.3"
   },
   "author": {

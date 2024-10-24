@@ -1,4 +1,4 @@
-export default ({ env }) => [
+export default [
   'strapi::errors',
   {
     name: 'strapi::security',
@@ -6,23 +6,21 @@ export default ({ env }) => [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'connect-src': ['self', 'unsafe-inline', 'https:'],
+          'connect-src': ["'self'", 'https:'],
           'img-src': [
             "'self'",
             'data:',
             'blob:',
-            `https://hdmh-strapi-s3-bucket.s3.amazonaws.com`,
-            'dl.airtable.com',
-            'market-assets.strapi.io'
+            'market-assets.strapi.io',
+            'hdmh-strapi-s3-bucket.s3.us-east-1.amazonaws.com',
           ],
-            'media-src': [
+          'media-src': [
             "'self'",
             'data:',
             'blob:',
-            `https://hdmh-strapi-s3-bucket.s3.amazonaws.com`,
-            'dl.airtable.com',
-            'market-assets.strapi.io'
-        ],
+            'market-assets.strapi.io',
+            'hdmh-strapi-s3-bucket.s3.us-east-1.amazonaws.com',
+          ],
           upgradeInsecureRequests: null,
         },
       },
@@ -36,4 +34,4 @@ export default ({ env }) => [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-];
+]
